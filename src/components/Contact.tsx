@@ -42,43 +42,21 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Basic validation
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      toast({
-        title: "Please fill in all fields",
-        description: "All fields are required to send your message.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      toast({
-        title: "Invalid email address",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
-      // Use FormData instead of JSON to avoid spam detection
-      const formDataToSend = new FormData();
-      formDataToSend.append('access_key', 'b6ba26a2-0e6e-41b5-a86d-9939001647b0');
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('message', formData.message);
-      formDataToSend.append('from_name', 'Goutami Portfolio Contact');
-      formDataToSend.append('subject', `Portfolio Contact from ${formData.name}`);
-      formDataToSend.append('botcheck', ''); // Honeypot field for spam protection
-
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formDataToSend
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'b6ba26a2-0e6e-41b5-a86d-9939001647b0',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          from_name: 'Portfolio Contact Form',
+          subject: `New Contact Form Submission from ${formData.name}`
+        })
       });
 
       const result = await response.json();
@@ -90,13 +68,12 @@ const Contact = () => {
         });
         setFormData({ name: '', email: '', message: '' });
       } else {
-        throw new Error(result.message || 'Failed to send message');
+        throw new Error('Failed to send message');
       }
     } catch (error) {
-      console.error('Contact form error:', error);
       toast({
         title: "Error Sending Message",
-        description: "Please try again or contact me directly at goutamideshpande394@gmail.com",
+        description: "Please try again later or contact me directly via email.",
         variant: "destructive",
       });
     } finally {
@@ -108,8 +85,8 @@ const Contact = () => {
     {
       icon: <Mail className="text-blue-500" size={24} />,
       title: "Email",
-      detail: "goutamideshpande394@gmail.com",
-      link: "mailto:goutamideshpande394@gmail.com"
+      detail: "goutami.deshpande@email.com",
+      link: "mailto:goutami.deshpande@email.com"
     },
     {
       icon: <MapPin className="text-green-500" size={24} />,
