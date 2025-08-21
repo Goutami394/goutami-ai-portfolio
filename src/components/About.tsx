@@ -40,11 +40,11 @@ const About = () => {
             <div className="text-center lg:text-left scroll-animate">
               <div className="relative inline-block group">
                 <div className="w-80 h-80 mx-auto lg:mx-0 rounded-2xl overflow-hidden portfolio-card animate-pulse-glow transform transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl">
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full h-full overflow-visible">
                     <img 
-                      src="/lovable-uploads/b5f2ba02-55f9-4fb8-a71e-aec6b609aff8.png" 
+                      src="/lovable-uploads/d2294271-a0f3-4e67-9f1b-8a3415c8a862.png" 
                       alt="Goutami Chidambar Deshpande"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:z-10 relative z-5"
                     />
                     <div className="absolute inset-0 hero-gradient opacity-20 group-hover:opacity-10 transition-opacity duration-500"></div>
                   </div>

@@ -8,21 +8,6 @@ const Hero = () => {
     window.open('https://drive.google.com/file/d/1g1KPC0nYlyj_784MwmEEVKmZnQtlWxL0/view?usp=sharing', '_blank');
   };
 
-  useEffect(() => {
-    const text = "Aspiring Software Engineer | AIML Student";
-    const typewriterElement = document.querySelector('.typewriter-text');
-    if (typewriterElement) {
-      let i = 0;
-      const typeWriter = () => {
-        if (i < text.length) {
-          typewriterElement.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeWriter, 100);
-        }
-      };
-      setTimeout(typeWriter, 1000);
-    }
-  }, []);
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
@@ -55,11 +40,15 @@ const Hero = () => {
         <div className="animate-slide-up">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white drop-shadow-2xl">
             <span className="text-white drop-shadow-lg">Goutami Chidambar</span>
-            <span className="block hero-text-gradient drop-shadow-lg">Deshpande</span>
+            <span className="block text-white drop-shadow-lg">Deshpande</span>
           </h1>
-          <h2 className="text-xl md:text-2xl text-white/90 mb-4 typewriter">
-            <span className="typewriter-text"></span>
-          </h2>
+          <div className="text-xl md:text-2xl text-white/90 mb-4 overflow-hidden">
+            <div className="marquee-container">
+              <div className="marquee-text">
+                Aspiring Software Engineer | AIML Student
+              </div>
+            </div>
+          </div>
           <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto">
             Building intelligent solutions through AI, ML, and Full-Stack Development
           </p>
