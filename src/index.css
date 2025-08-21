@@ -200,4 +200,16 @@
     background: hsl(var(--background) / 0.8);
     border-bottom: 1px solid hsl(var(--border) / 0.5);
   }
+  
+  /* Typewriter Animation */
+  .typewriter-text::after {
+    content: '|';
+    animation: blink-caret 1s step-end infinite;
+    color: hsl(var(--primary));
+  }
+  
+  @keyframes blink-caret {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
 }
